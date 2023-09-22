@@ -1,6 +1,6 @@
 <launch>
 	<!-- Launch file for Velodyne16 VLP-16 LiDAR -->
-
+	<param name="use_sim_time" value="true" />
 	<arg name="rviz" default="true" />
 
 	<node pkg="point_lio_unilidar" type="pointlio_mapping" name="laserMapping" output="screen">
@@ -61,7 +61,7 @@
 		<param name="initial_pose_aa" value="0.01" />
 
 		<param name="odom_frame_id" value="camera_init" />
-		<param name="base_frame_id" value="aft_mapped" />
+		<param name="base_frame_id" value="camera_init" />
 		<param name="global_frame_id" value="map" />
 	</node>
 
