@@ -6,7 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /Grid1
         - /Map1
+        - /Axes1
       Splitter Ratio: 0.5
     Tree Height: 555
   - Class: rviz/Selection
@@ -49,7 +51,7 @@ Visualization Manager:
         Y: 0
         Z: 0
       Plane: XY
-      Plane Cell Count: 10
+      Plane Cell Count: 100
       Reference Frame: <Fixed Frame>
       Value: true
     - Alpha: 0.699999988079071
@@ -62,11 +64,29 @@ Visualization Manager:
       Unreliable: false
       Use Timestamp: false
       Value: true
+    - Alpha: 1
+      Class: rviz/Axes
+      Enabled: true
+      Length: 1
+      Name: Axes
+      Radius: 0.10000000149011612
+      Reference Frame: aft_mapped
+      Show Trail: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/Axes
+      Enabled: true
+      Length: 1
+      Name: Axes
+      Radius: 0.10000000149011612
+      Reference Frame: <Fixed Frame>
+      Show Trail: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: map
+    Fixed Frame: camera_init
     Frame Rate: 30
   Name: root
   Tools:
@@ -90,7 +110,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 82.81974792480469
+      Distance: 25.729740142822266
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -106,9 +126,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.4297963380813599
+      Pitch: 0.9097965359687805
       Target Frame: <Fixed Frame>
-      Yaw: 1.07539701461792
+      Yaw: 0.26039746403694153
     Saved: ~
 Window Geometry:
   Displays:
@@ -126,5 +146,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 602
-  Y: 80
+  X: -32
+  Y: -32

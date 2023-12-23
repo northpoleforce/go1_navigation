@@ -210,7 +210,7 @@ target_link_libraries(cloud_subscriber
   ${catkin_LIBRARIES}
 )
 
-add_executable(grid_puber src/grid_puber.cpp)
-target_link_libraries(grid_puber
-  ${catkin_LIBRARIES}
-)
+# add_executable(grid_puber src/grid_puber.cpp)
+# target_link_libraries(grid_puber
+#   ${catkin_LIBRARIES}
+# )

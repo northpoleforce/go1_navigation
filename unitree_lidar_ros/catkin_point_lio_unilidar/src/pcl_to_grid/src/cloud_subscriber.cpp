@@ -7,8 +7,8 @@
 #define RESOLUTION 0.01
 #define Z_TOP 2.0
 #define Z_BUTTOM 1.0
-#define MAP_WIDTH 5000
-#define MAP_HEIGHT 2000
+#define MAP_WIDTH 5000 // x length
+#define MAP_HEIGHT 5000 // y length
  
 using namespace std;
 
@@ -36,7 +36,7 @@ void OccupancyGrid::init(ros::NodeHandle nh)
     map_publisher_metadata_ = nh.advertise<nav_msgs::MapMetaData>("map_metadata", 1, true);
 
     // 对map_进行初始化
-    map_.header.frame_id = "map";
+    map_.header.frame_id = "camera_init";
 
     // 地图的分辨率为1m,代表一个格子的距离是1m
     map_.info.resolution = RESOLUTION;
@@ -50,8 +50,8 @@ void OccupancyGrid::init(ros::NodeHandle nh)
     // map_.info.height = 100 / map_.info.resolution;
 
     // 地图左下角的点对应的物理坐标
-    map_.info.origin.position.x = 0.0;
-    map_.info.origin.position.y = 0.0;
+    map_.info.origin.position.x = -(MAP_WIDTH * RESOLUTION / 2);
+    map_.info.origin.position.y = -(MAP_HEIGHT * RESOLUTION / 2);
 
     // 对数组进行初始化, 数组的大小为实际像素的个数
     map_.data.resize(map_.info.width * map_.info.height);
@@ -70,12 +70,12 @@ void OccupancyGrid::PublishMap()
 
 void OccupancyGrid::UpdateMap(float x, float y){
             // 二维坐标转成一维坐标
-            int index = (int) (x/RESOLUTION+0.5) + (int) (y/RESOLUTION+0.5) * map_.info.width;
+            int index = (int) (x/RESOLUTION+0.5 + MAP_WIDTH/2) + (int) (y/RESOLUTION+0.5 + MAP_HEIGHT/2) * map_.info.width;
             if (index >= 0 && index < map_.info.width * map_.info.height){
                 map_.data[index] = 100;
             }else{
                 ROS_WARN("out of map");
-                cout << (int) (x/RESOLUTION+0.5) << "," << (int) (y/RESOLUTION+0.5) << endl;
+                cout << (int) (x/RESOLUTION+0.5 + MAP_WIDTH*RESOLUTION/2) << "," << (int) (y/RESOLUTION+0.5 + MAP_HEIGHT*RESOLUTION/2) << endl;
             }
 
 }
@@ -90,7 +90,7 @@ void pointCloud2ToZ(const sensor_msgs::PointCloud2 &msg)
 
 	for (int i = 0; i < out_pointcloud.points.size(); i++) {
         if (out_pointcloud.points[i].z > Z_BUTTOM && out_pointcloud.points[i].z < Z_TOP) {
-            occupancy_grid.UpdateMap(out_pointcloud.points[i].x+10, out_pointcloud.points[i].y+10);
+            occupancy_grid.UpdateMap(out_pointcloud.points[i].x, out_pointcloud.points[i].y);
 
         }
 	}
