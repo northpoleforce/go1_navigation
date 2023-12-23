@@ -1,6 +1,6 @@
 global_costmap:
-  global_frame: aft_mapped
-  robot_base_frame: camera_init
+  global_frame: camera_init
+  robot_base_frame: aft_mapped
   update_frequency: 1.0
   publish_frequency: 0.5
   static_map: false
