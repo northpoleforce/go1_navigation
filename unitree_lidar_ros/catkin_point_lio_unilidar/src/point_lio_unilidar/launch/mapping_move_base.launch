@@ -24,11 +24,11 @@
 	<node pkg="pcl_to_grid" type="cloud_subscriber" name="cloud_subscrier" output="screen"></node>
 
 	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-		<rosparam file="$(find point_lio_unilidar)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
-		<rosparam file="$(find point_lio_unilidar)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
-		<rosparam file="$(find point_lio_unilidar)/config/local_costmap_params.yaml" command="load" />
-		<rosparam file="$(find point_lio_unilidar)/config/global_costmap_params.yaml" command="load" /> 
-		<rosparam file="$(find point_lio_unilidar)/config/base_local_planner_params.yaml" command="load" />
+		<rosparam file="$(find point_lio_unilidar)/params/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+		<rosparam file="$(find point_lio_unilidar)/params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find point_lio_unilidar)/params/local_costmap_params.yaml" command="load" />
+		<rosparam file="$(find point_lio_unilidar)/params/global_costmap_params.yaml" command="load" /> 
+		<rosparam file="$(find point_lio_unilidar)/params/base_local_planner_params.yaml" command="load" />
 	</node>
 
 	<group if="$(arg rviz)">
