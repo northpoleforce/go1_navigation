@@ -1,5 +1,5 @@
 local_costmap:
-  global_frame: aft_mapped
+  global_frame: camera_init
   robot_base_frame: aft_mapped
   update_frequency: 1.0
   publish_frequency: 2.0
