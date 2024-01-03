@@ -22,12 +22,10 @@
 	</node>
 	    <!-- run pointcloud_to_laserscan node -->
     <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
-
-
         <remap from="cloud_in" to="cloud_registered"/>
         <!-- <remap from="scan" to="depth/scan_filtered"/> -->
         <rosparam>
-            target_frame: aft_mapped # Leave disabled to output scan in pointcloud frame
+            target_frame: camera_init # Leave disabled to output scan in pointcloud frame
             transform_tolerance: 0.01
             min_height: -1
             max_height: 1
@@ -48,6 +46,7 @@
         </rosparam>
 
     </node>
+	<node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster" args="0 0 0 0 0 0 /aft_mapped /base_link 100"/>
 
 	<!-- <node pkg="pcl_to_grid" type="cloud_subscriber" name="cloud_subscrier" output="screen"></node> -->
 	<node name="map_server" pkg="map_server" type="map_server" args="$(find point_lio_unilidar)/map/new_map.yaml"   >
@@ -60,6 +59,10 @@
 		<param name="initial_pose_xx" value="0.01" />
 		<param name="initial_pose_yy" value="0.01" />
 		<param name="initial_pose_aa" value="0.01" />
+
+		<param name="odom_frame_id" value="camera_init" />
+		<param name="base_frame_id" value="aft_mapped" />
+		<param name="global_frame_id" value="map" />
 	</node>
 
 	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
