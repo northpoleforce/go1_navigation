@@ -52,7 +52,7 @@
 	<node name="map_server" pkg="map_server" type="map_server" args="$(find point_lio_unilidar)/map/new_map.yaml"   >
 		<param name="frame_id" value="camera_init" />
 	</node>
-	<node pkg="amcl" type="amcl" name="amcl" output="screen">
+	<!-- <node pkg="amcl" type="amcl" name="amcl" output="screen">
 		<param name="initial_pose_x" value="0" />
 		<param name="initial_pose_y" value="0" />
 		<param name="initial_pose_a" value="0" />
@@ -63,7 +63,7 @@
 		<param name="odom_frame_id" value="camera_init" />
 		<param name="base_frame_id" value="camera_init" />
 		<param name="global_frame_id" value="map" />
-	</node>
+	</node> -->
 
 	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 	<rosparam file="$(find point_lio_unilidar)/scan_params/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
