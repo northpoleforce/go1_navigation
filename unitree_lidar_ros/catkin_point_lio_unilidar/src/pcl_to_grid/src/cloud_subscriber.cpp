@@ -5,8 +5,8 @@
 #include <nav_msgs/OccupancyGrid.h>
 
 #define RESOLUTION 0.01
-#define Z_TOP 2.0
-#define Z_BUTTOM 1.0
+#define Z_TOP 1.0
+#define Z_BUTTOM 0.0
 #define MAP_WIDTH 5000 // x length
 #define MAP_HEIGHT 5000 // y length
  
