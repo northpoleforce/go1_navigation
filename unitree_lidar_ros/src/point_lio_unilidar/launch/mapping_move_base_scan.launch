@@ -1,8 +1,9 @@
 <launch>
 	<!-- Launch file for Velodyne16 VLP-16 LiDAR -->
-	<param name="use_sim_time" value="true" />
-	<arg name="rviz" default="true" />
+	<!-- <param name="use_sim_time" value="true" /> -->
 
+	<arg name="rviz" default="true" />
+	<include file="$(find unitree_lidar_ros)/launch/run_without_rviz.launch" />
 	<node pkg="point_lio_unilidar" type="pointlio_mapping" name="laserMapping" output="screen">
 		<rosparam command="load" file="$(find point_lio_unilidar)/config/unilidar.yaml" />
 		

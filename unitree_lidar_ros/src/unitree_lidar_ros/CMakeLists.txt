@@ -42,13 +42,13 @@ include_directories(
 	include
 	${catkin_INCLUDE_DIRS}
 	${PCL_INCLUDE_DIRS}
-  ../../../unitree_lidar_sdk/include
+    ./unitree_lidar_sdk/include
 )
 
 link_directories(
   lib
   ${PCL_LIBRARY_DIRS}
-  ../../../unitree_lidar_sdk/lib/${CMAKE_SYSTEM_PROCESSOR}
+  ./unitree_lidar_sdk/lib/${CMAKE_SYSTEM_PROCESSOR}
 )
 
 set(EXTRA_LIBS 
