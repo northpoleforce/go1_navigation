@@ -1,6 +1,17 @@
+
+.catkin_workspace
+.vscode
+
 build
 devel
-.catkin_workspace
-src/CMakeLists.txt
 
-src/point_lio_unilidar/map
+src/CMakeLists.txt
+src/fast_gicp
+src/hdl_global_localization
+src/hdl_localization
+src/include
+src/ndt_omp
+src/octomap_mapping
+src/octomap_server
+src/pcl_to_grid
+src/small_gicp_relocalization

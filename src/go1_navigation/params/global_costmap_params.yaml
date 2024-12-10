@@ -3,14 +3,20 @@ global_costmap:
   robot_base_frame: base_link
   update_frequency: 5.0
   publish_frequency: 1.0
-  static_map: false
-  rolling_window: true
-  width: 30
-  height: 30
-  resolution: 0.08
-  transform_tolerance: 2
-  footprint_padding: 0.05
-  inflation_radius: 0.5
-  # plugins:
-  # - {name: obstacle_layer,  type: "costmap_2d::ObstacleLayer"}
-  # - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+  # # 动态地图
+  # static_map: false
+  # rolling_window: true
+  # 静态地图
+  static_map: true  # 开启静态地图支持
+  rolling_window: false  # 必须为 false，静态地图不支持滚动窗口
+
+  # width: 30
+  # height: 30
+  # resolution: 0.08
+  # transform_tolerance: 2
+  # footprint_padding: 0.05
+  # inflation_radius: 0.2 # 设置膨胀半径(单位：米): 对障碍物周围的区域进行膨胀，增加代价，从而在路径规划中避免靠近障碍物
+
+  plugins:
+    - {name: static_layer, type: "costmap_2d::StaticLayer"}

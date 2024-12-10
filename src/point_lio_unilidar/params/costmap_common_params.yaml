@@ -1,45 +1,24 @@
+# 如果传感器探测到的障碍物距离机器人 小于 2.5 米，这些障碍物会被标记到代价地图中。超过此距离的障碍物将被忽略。
 obstacle_range: 2.5
+
+# 用于清理代价地图中的障碍物信息。障碍物感知会追踪传感器射线的最大范围（这里是 3.0 米），以将射线路径上的空闲区域从地图中清除。
 raytrace_range: 3.0
-footprint: [[-0.52, -0.14], [-0.52, 0.14],[0.30, 0.14],[0.30, -0.14]]
-# robot_radius: 0.01
-inflation_radius: 0.3
+
+# 定义机器人的边界形状（一个多边形），用二维坐标指定每个顶点。顶点顺序为逆时针，单位为米。
+# footprint: [[-0.52, -0.14], [-0.52, 0.14],[0.30, 0.14],[0.30, -0.14]]
+footprint: [[0.2, 0.15], [-0.5, 0.15],[-0.5, -0.15],[0.2, -0.15]]
+
+#  指定障碍物的膨胀半径，单位为米。当障碍物被标记到代价地图后，其周围 x 米的区域会被赋予较高的代价值，防止机器人靠近。
+inflation_radius: 0.1
+
+#  TF（坐标变换）的容忍时间，单位为秒。
 transform_tolerance: 0.2
 
+# 定义用于代价地图的传感器数据来源。
+# laser_scan_sensor 和 point_cloud2_sensor 是传感器的名字
 observation_sources: laser_scan_sensor point_cloud2_sensor
 
+
+# 表示探测到的障碍物会被标记到地图。
+# 表示探测到的空闲区域会被清理（用于移除误报或动态障碍物）。
 laser_scan_sensor: {sensor_frame: unilidar_lidar, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
-
-# point_cloud2_sensor: {sensor_frame: unilidar_lidar, data_type: PointCloud2, topic: /unilidar/cloud, marking: true, clearing: true}
-
-
-# plugins:
-#   - {name: voxel_layer, type: "costmap_2d::VoxelLayer"}
-#   - {name: inflation_layer,   type: "costmap_2d::InflationLayer"}
-#   - {name: obstacle_layer,   type: "costmap_2d::ObstacleLayer"}
-
-# voxel_layer:
-#   enabled: true
-#   origin_z: 0.0
-#   z_resolution: 0.05
-#   z_voxels: 10
-#   unknown_threshold: 0
-#   mark_threshold: 2
-#   publish_voxel_map: true
-#   combination_method: 0
-#   observation_sources: point_cloud2_sensor
-#   output_points:
-#     data_type: PointCloud2
-#     topic: voxel_points
-#     marking: true
-#     clearing: true
-#     obstacle_range: 1.90
-#     raytrace_range: 2.00
-#     min_obstacle_height: 0.5
-#     max_obstacle_height: 0.8
-#     mark_threshold: 3
-#     observation_persistence: 2.0
-
-# obstacle_layer:
-#   enabled: true
-#   origin_z: 0.0
-#   observation_sources: point_cloud2_sensor
