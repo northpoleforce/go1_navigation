@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>camera_driver</name>
+  <version>0.0.1</version>
+  <description>The camera driver package</description>
+  <maintainer email="your@email.com">Your Name</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+</package> 
