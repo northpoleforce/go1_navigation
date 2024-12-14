@@ -1,5 +1,25 @@
+use_imu_as_input: 0 # change to 1 to use IMU as input of Point-LIO
+prop_at_freq_of_imu: 1
+check_satu: 1
+init_map_size: 10
+point_filter_num: 1 # Options: 4, 3
+space_down_sample: 1
+
+# 0.1
+# filter_size_surf: 0.1 # Options: 0.5, 0.3, 0.2, 0.15, 0.1
+# filter_size_map: 0.1 # Options: 0.5, 0.3, 0.15, 0.1
+# 0.5
+filter_size_surf: 0.5
+filter_size_map: 0.5
+
+ivox_nearby_type: 18   # Options: 0, 6, 18, 26
+
+cube_side_length: 2000 # Options: 1000, 2000
+runtime_pos_log_enable: 0 # Options: 0, 1
+
 common:
     lid_topic: "/unilidar/cloud" 
+    # lid_topic: "/unilidar/cloud_cropped"
     imu_topic: "/unilidar/imu" 
     con_frame: false # true: if you need to combine several LiDAR frames into one
     con_frame_num: 1 # the number of frames combined
@@ -22,7 +42,7 @@ mapping:
     satu_acc: 30.0 # the saturation value of IMU's acceleration. not related to the units
     satu_gyro: 35 # the saturation value of IMU's angular velocity. not related to the units
     acc_norm: 9.81 # 1.0 for g as unit, 9.81 for m/s^2 as unit of the IMU's acceleration
-    lidar_meas_cov: 0.01 # 0.001
+    lidar_meas_cov: 0.001 # 0.001
     acc_cov_output: 500
     gyr_cov_output: 1000 
     b_acc_cov: 0.0001 
@@ -41,12 +61,14 @@ mapping:
     
     # transform from imu to lidar
     extrinsic_T: [ 0.007698, 0.014655, -0.00667] # ulhk # [-0.5, 1.4, 1.5] # utbm
+    # extrinsic_T: [ 0, 0, 0]
     extrinsic_R: [ 1, 0, 0,
                    0, 1, 0,
                    0, 0, 1 ] # ulhk 4 utbm 3
 
 odometry: 
     publish_odometry_without_downsample: enable  
+    # publish_odometry_without_downsample: false
 
 publish:
     path_en: true                 # false: close the path output
